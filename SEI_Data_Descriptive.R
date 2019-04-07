@@ -31,7 +31,16 @@ Faculty_Gender$Gender <- as.factor(Faculty_Gender$Gender)
 Faculty_Gender$Mean11 <- as.numeric(Faculty_Gender$Mean11)
 Faculty_Gender <- data.frame(Faculty_Gender)
 
-###### Descriptive Analysis ######
+Gender_Experience <- aggregate(SEI_Data$Mean11, list(SEI_Data$gender, SEI_Data$experience), mean)
+colnames(Gender_Experience)[colnames(Gender_Experience) == 'Group.1'] <- 'Gender'
+colnames(Gender_Experience)[colnames(Gender_Experience) == 'Group.2'] <- 'Experience'
+colnames(Gender_Experience)[colnames(Gender_Experience) == 'x'] <- 'Mean11'
+Gender_Experience$Gender <- as.factor(Gender_Experience$Gender)
+Gender_Experience$Experience <- as.factor(Gender_Experience$Experience)
+Gender_Experience$Mean11 <- as.numeric(Gender_Experience$Mean11)
+Gender_Experience <- data.frame(Gender_Experience)
+
+###### Descriptive Plots ######
 
 library(plotly)
 plot1 <- plot_ly(x = Faculty_Experience$Faculty, 
@@ -58,7 +67,13 @@ plot3 <- plot_ly(x = Faculty_Gender$Faculty,
 
 plot3
 
+plot4 <- plot_ly(x = Gender_Experience$Gender,
+                 y = Gender_Experience$Mean11, 
+                 color = Gender_Experience$Experience,
+                 type = 'bar') %>%
+  layout(title ='Gender / Experince vs Mean 11')
 
+plot4
 
 
 
