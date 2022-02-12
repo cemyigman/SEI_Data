@@ -58,8 +58,6 @@ plot3 <- plot_ly(x = Faculty_Gender$Faculty,
 
 plot3
 
-#TEST
-
 
 
 
